@@ -5,7 +5,7 @@ from django.shortcuts import render
 from .models import Project, Task
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'title':"Takions App"})
 
 def projects(request):
-    return render(request=request, template_name='projects.html')
+    return render(request, 'projects.html', {'title':"Takions Projects"})

@@ -20,6 +20,7 @@ def signup(request):
             user = User.objects.create_user(username=request.POST['username'], email=request.POST['email'], password=request.POST['password1'])
             user.save()
             return render(request, 'login.html', {
+                "title":"Takions App",
                 "form": AuthenticationForm,
                 "msg" : "User created successfully!"
                 })
@@ -29,12 +30,14 @@ def signup(request):
 def signin(request):
     if request.method == 'GET':
         return render(request, 'login.html', {
+            "title":"Takions App",
             "form": AuthenticationForm
             })
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             return render(request, 'login.html', {
+                "title":"Takions App",
                 "form": AuthenticationForm, 
                 "error": "Username or password is incorrect."
                 })
