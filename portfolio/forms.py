@@ -1,12 +1,17 @@
+from django import forms
 from django.forms import ModelForm
 from .models import Project, Task
 
-class CreateProject(ModelForm):
-    class Meta:
-        model = Project
-        fields = ['title', 'description', 'image', 'url']
+class CreateProject(forms.Form):
+    title = forms.CharField(label='Title', max_length=100)
+    description = forms.CharField(label='Description', widget=forms.Textarea, max_length=500)
+    image = forms.FileField(label='Image File')
+    url = forms.URLField(label='Project URL')
 
-class CreateTask(ModelForm):
-    class Meta:
-        model = Task
-        fields = ['title', 'description', 'importance', 'completed']
+class CreateTask(forms.Form):
+    title = forms.CharField(label='Title', max_length=100)
+    description = forms.CharField(label='Description', widget=forms.Textarea, max_length=500)
+    importance = forms.DecimalField(label='Priority', max_value=1.00, min_value=0.00, max_digits=3, decimal_places=2)
+    completed = forms.BooleanField(label='Completed')
+    
+        
