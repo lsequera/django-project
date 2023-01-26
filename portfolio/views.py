@@ -20,20 +20,20 @@ def projects(request):
 @login_required
 def create_project(request):
     if request.method == "GET":
-        return render(request, 'create_project.html', {"form": CreateProject})
+        return render(request, 'create_project.html', {'title':"Takions Projects", 'form': CreateProject})
     else:
         try:
             new_project = Project.objects.create(
                 title=request.POST['title'], 
                 description=request.POST['description'],
-                image=request.POST['image'],
+                image='portfolio/images/'+request.POST['image'],
                 url=request.POST['url'],
                 user=request.user
                 )
             new_project.save()
             return redirect('projects')
         except ValueError:
-            return render(request, 'create_project.html', {"form": CreateProject, "error": "Error creating project."})
+            return render(request, 'create_project.html', {'title':"Takions Projects", 'form': CreateProject, 'error': "Error creating project."})
 
 @login_required
 def create_task(request):
