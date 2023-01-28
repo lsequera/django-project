@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from .models import Project
 
 class CreateProject(forms.Form):
     title = forms.CharField(label='Title', max_length=100)
@@ -12,4 +14,7 @@ class CreateTask(forms.Form):
     importance = forms.DecimalField(label='Priority', max_value=1.00, min_value=0.00, max_digits=3, decimal_places=2)
     completed = forms.BooleanField(label='Completed')
     
-        
+class CreateProject2(ModelForm):
+    class Meta:
+        model = Project
+        fields = ['title', 'description', 'image', 'url']

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-from .forms import CreateProject, CreateTask
+from .forms import CreateProject, CreateTask, CreateProject2
 from .models import Project, Task
 
 def index(request):
@@ -26,7 +26,7 @@ def create_project(request):
             new_project = Project.objects.create(
                 title=request.POST['title'], 
                 description=request.POST['description'],
-                image='portfolio/images/'+request.POST['image'],
+                image=request.FILES['image'],
                 url=request.POST['url'],
                 user=request.user
                 )
