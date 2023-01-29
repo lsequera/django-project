@@ -53,3 +53,12 @@ def create_task(request):
         except ValueError:
             return render(request, 'create_task.html', {"form": CreateTask, "error": "Error creating project."})
 
+def detail(request, project_id):
+    project_selected = Project.objects.fget(pk=project_id)
+    task_list = Task.objects.filter(project=project_selected)
+    return render(request, 'project_detail.html', {
+        'title':"Takions Projects", 
+        'project': project_selected,
+        'task_list': task_list
+        })
+
