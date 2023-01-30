@@ -11,7 +11,6 @@
     <div class="col-md-4 p-4">
       <div class="card bg-black card-project">
         <img src="{{ project.image.url }}" class="card-img-top" />
-        <p>{{ project.image.url }}</p>
         <div class="card-body">
   
           <h2>{{ project.title }}</h2>
@@ -19,6 +18,13 @@
   
           {% if project.url %}
           <a href="{{ project.url }}" class="btn btn-light rounded-0 btn-sm" target="__blank" rel="noreferrer">Visit the Project</a>
+          {% endif %}
+
+          {% if user.is_authenticated %}
+          <div>
+            <a href="{% url 'detail' project.pk %}" class="btn btn-primary">Detail</a>
+            <a href="{% url 'create_task' %}" class="btn btn-secondary">Create a task for this project</a>
+          </div>
           {% endif %}
         </div>
       </div>
