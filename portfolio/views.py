@@ -47,13 +47,13 @@ def create_task(request):
                 description = request.POST['description'],
                 importance = request.POST['importance'],
                 completed = request.POST.get('completed', False),
-                project = request.POST.get('project'),
+                project = Project.objects.get(pk=int(request.POST.get('project'))),
                 user = request.user
             )
             new_task.save()
-            return redirect('tasks')
+            return redirect('projects')
         except ValueError:
-            return render(request, 'create_task.html', {"form": CreateTask, "error": "Error creating project.", 'projects': project_list})
+            return render(request, 'create_task.html', {"form": CreateTask, "error": "Error creating task.", 'projects': project_list})
 
 def detail(request, project_id):
     project_selected = Project.objects.get(pk=project_id)
