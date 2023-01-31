@@ -37,21 +37,23 @@ def create_project(request):
 
 @login_required
 def create_task(request):
+    project_list = Project.objects.filter(user=request.user)
     if request.method == "GET":
-        return render(request, 'create_task.html', {"form": CreateTask})
+        return render(request, 'create_task.html', {"form": CreateTask, 'projects': project_list})
     else:
         try:
             new_task = Task.objects.create(
                 title = request.POST['title'], 
                 description = request.POST['description'],
                 importance = request.POST['importance'],
-                completed = request.POST['completed'],
+                completed = request.POST.get('completed', False),
+                project = request.POST.get('project'),
                 user = request.user
             )
             new_task.save()
             return redirect('tasks')
         except ValueError:
-            return render(request, 'create_task.html', {"form": CreateTask, "error": "Error creating project."})
+            return render(request, 'create_task.html', {"form": CreateTask, "error": "Error creating project.", 'projects': project_list})
 
 def detail(request, project_id):
     project_selected = Project.objects.get(pk=project_id)

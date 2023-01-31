@@ -23,8 +23,16 @@
                     <input type="range" class="form-range" name="importance" id="importance" min="0" max="1" step="0.01">
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" value="" id="completed" name="completed">
+                    <input type="checkbox" class="form-check-input" value="True" id="completed" name="completed">
                     <label for="completed" class="form-check-label">{{ form.completed.label }}</label>
+                </div>
+                <div class="mb-3">
+                    <label for="importance" class="form-label">{{ form.project.label }}</label>
+                    <select class="form-select" aria-label="Default">
+                        {% for project in projects %}
+                        <option value="{{ project.pk }}">{{ project.title }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
            
                 <button class="btn btn-secondary">Save</button>
