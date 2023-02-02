@@ -9,9 +9,17 @@
         <p>{{ project.description }}</p>
         <h3>Tasks</h3>
         {% for task in task_list %}
-            <div class="card card-body border border-secondary mt-3">
-                <h4>{{ task.title }}</h4>
-                <p>{{ task.description }}</p>
+            <div class="card border border-secondary mt-3">
+                <div class="card-header">
+                    <h4><i class="fa-regular fa-clock"></i> {{ task.title }}</h4><span class="badge bg-primary float-end">{{ task.creation_date }}</span>
+                </div>
+                <div class="card-body"> 
+                    <p>{{ task.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-pencil"></i> Edit</a>
+                    <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</a>
+                </div>    
             </div>
         {% endfor %}
     </section>
