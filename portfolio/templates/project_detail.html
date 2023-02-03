@@ -10,15 +10,18 @@
         <h3>Tasks</h3>
         {% for task in task_list %}
             <div class="card border border-secondary mt-3">
-                <div class="card-header">
-                    <h4><i class="fa-regular fa-clock"></i> {{ task.title }}</h4><span class="badge bg-primary float-end">{{ task.creation_date }}</span>
+                <div class="card-header d-flex">
+                    <h4><i class="fa-regular fa-clock"></i> {{ task.title }}</h4><span class="badge bg-primary ms-auto">{{ task.creation_date }}</span>
                 </div>
                 <div class="card-body"> 
                     <p>{{ task.description }}</p>
                 </div>
-                <div class="card-footer">
-                    <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-pencil"></i> Edit</a>
-                    <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</a>
+                <div class="card-footer d-flex">
+                    <div> 
+                        <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-pencil"></i> Edit</a>
+                        <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</a>
+                    </div>
+                    <a href="" class="btn btn-success btn-sm ms-auto"><i class="fa-solid fa-square-check "></i> Completed</a>
                 </div>    
             </div>
         {% endfor %}
